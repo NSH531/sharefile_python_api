@@ -6,8 +6,15 @@ class sharefile():
     methods:
      
     > auth -  get autenticating token 
-    >
+    > items
     """
+    def items(self,env:str,token):
+        
+        headers = {
+                    'Authorization': f'Bearer {token}',
+                    }   
+        res = requests.get(f'https://{env}.sf-api.com/sf/v3/Items', headers=headers, verify=False)
+        return res.json()
     def index(self,env:str,creds=None,comm=None):
       
 
