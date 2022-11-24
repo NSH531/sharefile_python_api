@@ -6,8 +6,22 @@ class sharefile():
     methods:
      
     > auth -  get autenticating token 
-    > items
+    > items - Get Root Items
+     
     """
+    def uploader(self,env:str,item_id,token,filepath):
+        headers = {
+                    'Authorization': f'Bearer {token}',
+                    }   
+
+        res = requests.get(f'https://{env}.sf-api.com/sf/v3/Items({item_id})/Upload', headers=headers, verify=False)
+
+        files = {
+            'File1': open(file=filepath, 'rb')
+        }
+
+        resp = requests.post(res, files=files, verify=False)
+        return resp.json()
     def items(self,env:str,token):
         
         headers = {
@@ -36,3 +50,4 @@ class sharefile():
 
 print(sharefile.index("weankor"))
 print(sharefile.auth("weankor",creds={"USERNAME":"my@user.name","PASSWORD":'mypassword',"CLIENT_ID":"myclient-id","myclient-SECRET":"myclient-secret"}))
+
