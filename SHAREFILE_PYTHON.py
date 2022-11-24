@@ -9,18 +9,31 @@ class sharefile():
     > items - Get Root Items
      
     """
+    def dl(self,env:str,item_id,token,filepath:str):
+        headers = {
+            'Authorization': f'Bearer {token}',
+        }
+
+        response = requests.get(f'https://{env}.sf-api.com/sf/v3/Items({item_id})/Download', headers=headers, verify=False)
+
+        with open(filepath, 'wb') as f:
+            f.write(response.content)
+        return response.json()
+
     def uploader(self,env:str,item_id,token,filepath:str):
         headers = {
                     'Authorization': f'Bearer {token}',
                     }   
 
         res = requests.get(f'https://{env}.sf-api.com/sf/v3/Items({item_id})/Upload', headers=headers, verify=False)
+        f=dict(File1=open(file=filepath, 'rb'))
+        
 
         files = {
             'File1': open(file=filepath, 'rb')
         }
 
-        resp = requests.post(res, files=files, verify=False)
+        resp = requests.post(res, files=f, verify=False)
         return resp.json()
     def items(self,env:str,token):
         
