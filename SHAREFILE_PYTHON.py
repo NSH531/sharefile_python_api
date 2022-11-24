@@ -9,7 +9,7 @@ class sharefile():
 
         print(res)
         return res.json()
-    def upload(env:str,creds={"USERNAME":"my@user.name","PASSWORD":'mypassword',"CLIENT_ID":"myclient-id","myclient-SECRET":"myclient-secret"},comm="Shares"):
+    def auth(env:str,creds={"USERNAME":"my@user.name","PASSWORD":'mypassword',"CLIENT_ID":"myclient-id","myclient-SECRET":"myclient-secret"},comm="Shares"):
         
         headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -19,6 +19,7 @@ class sharefile():
 
         T = requests.post(f'https://{env}.sharefile.com/oauth/token', headers=headers, data=data)
 
-        return T
+        return T.json()
 
 print(sharefile.index("weankor"))
+print(sharefile.auth("weankor",creds={"USERNAME":"my@user.name","PASSWORD":'mypassword',"CLIENT_ID":"myclient-id","myclient-SECRET":"myclient-secret"}))
