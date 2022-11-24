@@ -9,7 +9,7 @@ class sharefile():
     > items - Get Root Items
      
     """
-    def uploader(self,env:str,item_id,token,filepath):
+    def uploader(self,env:str,item_id,token,filepath:str):
         headers = {
                     'Authorization': f'Bearer {token}',
                     }   
