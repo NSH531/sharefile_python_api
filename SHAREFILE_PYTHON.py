@@ -1,15 +1,21 @@
 import requests
 
 class sharefile():
-  
-    def index(env:str,creds=None,comm=None):
+    """
+    this class implements sharefile's API
+    methods:
+     
+    > auth -  get autenticating token 
+    >
+    """
+    def index(self,env:str,creds=None,comm=None):
       
 
         res = requests.get(f'https://{env}.sf-api.com/sf/v3')
 
         print(res)
         return res.json()
-    def auth(env:str,creds={"USERNAME":"my@user.name","PASSWORD":'mypassword',"CLIENT_ID":"myclient-id","myclient-SECRET":"myclient-secret"},comm="Shares"):
+    def auth(self,env:str,creds={"USERNAME":"my@user.name","PASSWORD":'mypassword',"CLIENT_ID":"myclient-id","myclient-SECRET":"myclient-secret"},comm="Shares"):
         
         headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
