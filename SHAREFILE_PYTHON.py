@@ -1,5 +1,8 @@
-import requests
-
+import requests,os,random
+import pandas as PD
+class out():
+    def CSV(Json:dict):
+        return PD.DataFrame(Json).to_csv(os.getcwd()+str(random.randint(10001,99999))+".csv"))
 class sharefile():
     """
     this class implements sharefile's API
@@ -20,18 +23,14 @@ class sharefile():
             f.write(response.content)
         return response.json()
 
-    def uploader(self,env:str,item_id,token,filepath:str):
+    def uploader(self,env:str,item_id,token,filepath:str,arg="rb"):
         headers = {
                     'Authorization': f'Bearer {token}',
                     }   
-
+        a=arg            
         res = requests.get(f'https://{env}.sf-api.com/sf/v3/Items({item_id})/Upload', headers=headers, verify=False)
-        f=dict(File1=open(file=filepath, 'rb'))
+        f=dict(File1=open(file=filepath,mode=a))
         
-
-        files = {
-            'File1': open(file=filepath, 'rb')
-        }
 
         resp = requests.post(res, files=f, verify=False)
         return resp.json()
@@ -60,7 +59,7 @@ class sharefile():
         T = requests.post(f'https://{env}.sharefile.com/oauth/token', headers=headers, data=data)
 
         return T.json()
-
+print(out.CSV(sharefile.index(sharefile,env="weankor")))
 print(sharefile.index("weankor"))
 print(sharefile.auth("weankor",creds={"USERNAME":"my@user.name","PASSWORD":'mypassword',"CLIENT_ID":"myclient-id","myclient-SECRET":"myclient-secret"}))
 
