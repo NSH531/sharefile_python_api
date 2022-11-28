@@ -2,7 +2,7 @@ import requests,os,random
 import pandas as PD
 class out():
     def CSV(Json:dict):
-        return PD.DataFrame(Json).to_csv(os.getcwd()+str(random.randint(10001,99999))+".csv"))
+        return PD.DataFrame(Json).to_csv(os.getcwd()+str(random.randint(10001,99999))+".csv")
 class sharefile():
     """
     this class implements sharefile's API
@@ -60,6 +60,6 @@ class sharefile():
 
         return T.json()
 print(out.CSV(sharefile.index(sharefile,env="weankor")))
-print(sharefile.index("weankor"))
-print(sharefile.auth("weankor",creds={"USERNAME":"my@user.name","PASSWORD":'mypassword',"CLIENT_ID":"myclient-id","myclient-SECRET":"myclient-secret"}))
+print(sharefile.index(sharefile,env="weankor"))
+print(sharefile.auth(sharefile,env="weankor",creds={"USERNAME":"my@user.name","PASSWORD":'mypassword',"CLIENT_ID":"myclient-id","myclient-SECRET":"myclient-secret"}))
 
