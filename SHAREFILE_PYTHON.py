@@ -1,9 +1,25 @@
 import requests,os,random
 import pandas as PD
+env="we-can"
 class out():
     def CSV(Json:dict):
         return PD.DataFrame(Json).to_csv(os.getcwd()+str(random.randint(10001,99999))+".csv")
 class sharefile():
+    def ti(self,t="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJTaGFyZUZpbGUiLCJzdWIiOiI2NDZiYzFkZi0zMjI5LTRhZmMtYTkxYy0zYmQ2ZWE0MDE4MTciLCJpYXQiOjE2Njk2MjY5ODQsImV4cCI6MTY2OTY1NTc4NCwiYXVkIjoicEc5QmZteUpGbXcyeWQ1RE5mU0MzRXIxY25LUW50c0wiLCJzaGFyZWZpbGU6dG9rZW5pZCI6IkduSTRVcUdleWROdVpqb0QwNkI2Q25KZTdpcFRMdHlYJCRsMGo3RXpqR005NVdLOHJ4RG0zWmRnN25wcTNyWHFjSCIsInNjb3BlIjoidjMgdjMtaW50ZXJuYWwiLCJzaGFyZWZpbGU6c3ViZG9tYWluIjoid2UtY2FuIiwic2hhcmVmaWxlOmFjY291bnRpZCI6ImFhZWZiOThkLTFlODktNDllNi05ZTc4LTg0YmZiZTY0YzE4YiJ9.ZdvyoJ2QQYlAUywP3-PElMXmcaU96-Qf05M9d4-vNfg",env="we-can",sub=""):
+        headers = {
+            'Authorization': f'Bearer {t}',
+        }
+
+        Re = requests.get(f'https://we-can.sf-api.com/sf/v3/{sub}', headers=headers)
+        return Re
+
+    def TOKEN(self,t="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJTaGFyZUZpbGUiLCJzdWIiOiI2NDZiYzFkZi0zMjI5LTRhZmMtYTkxYy0zYmQ2ZWE0MDE4MTciLCJpYXQiOjE2Njk2MjY5ODQsImV4cCI6MTY2OTY1NTc4NCwiYXVkIjoicEc5QmZteUpGbXcyeWQ1RE5mU0MzRXIxY25LUW50c0wiLCJzaGFyZWZpbGU6dG9rZW5pZCI6IkduSTRVcUdleWROdVpqb0QwNkI2Q25KZTdpcFRMdHlYJCRsMGo3RXpqR005NVdLOHJ4RG0zWmRnN25wcTNyWHFjSCIsInNjb3BlIjoidjMgdjMtaW50ZXJuYWwiLCJzaGFyZWZpbGU6c3ViZG9tYWluIjoid2UtY2FuIiwic2hhcmVmaWxlOmFjY291bnRpZCI6ImFhZWZiOThkLTFlODktNDllNi05ZTc4LTg0YmZiZTY0YzE4YiJ9.ZdvyoJ2QQYlAUywP3-PElMXmcaU96-Qf05M9d4-vNfg",env="we-can",sub=""):
+        Re=sharefile.ti(sharefile,t,env="we-can")
+        rx=[]
+        rx.append(Re.json()["value"])
+        for I in Re.json()["value"]:
+            rx.append(sharefile.ti(sharefile,t=t,sub=I["url"]).json())
+        return Re.json()   
     """
     this class implements sharefile's API
     methods:
@@ -59,7 +75,8 @@ class sharefile():
         T = requests.post(f'https://{env}.sharefile.com/oauth/token', headers=headers, data=data)
 
         return T.json()
-print(out.CSV(sharefile.index(sharefile,env="weankor")))
-print(sharefile.index(sharefile,env="weankor"))
-print(sharefile.auth(sharefile,env="weankor",creds={"USERNAME":"my@user.name","PASSWORD":'mypassword',"CLIENT_ID":"myclient-id","myclient-SECRET":"myclient-secret"}))
+print(sharefile.TOKEN(sharefile,env=env)["value"])
+#print(out.CSV(sharefile.index(sharefile,env=env)))
+print(sharefile.index(sharefile,env=env))
+#print(sharefile.auth(sharefile,env=env,creds={"USERNAME":"NETANELST@WE-ANKOR.CO.IL","PASSWORD":'318962420Ns$',"CLIENT_ID":"myclient-id","myclient-SECRET":"myclient-secret"}))
 
