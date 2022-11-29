@@ -76,7 +76,7 @@ class sharefile():
 
         return T.json()
 print(sharefile.TOKEN(sharefile,env=env)["value"])
-#print(out.CSV(sharefile.index(sharefile,env=env)))
+#print(out.CSV(share file.index(sharefile,env=env)))
 print(sharefile.index(sharefile,env=env))
 #print(sharefile.auth(sharefile,env=env,creds={"USERNAME":"NETANELST@WE-ANKOR.CO.IL","PASSWORD":'318962420Ns$',"CLIENT_ID":"myclient-id","myclient-SECRET":"myclient-secret"}))
 
